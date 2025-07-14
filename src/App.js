@@ -8,7 +8,6 @@ const visible = { opacity: 1, y: 0, transition: { duration: 0.5 } };
 function App() {
   return (
     <div className="flex flex-col lg:flex-row h-screen">
-      {/* Text and Icons Section */}
       <div className="lg:w-3/5 flex flex-col justify-center py-8 px-8">
         <div className="flex flex-col text-left mb-2 lg:text-right lg:mb-0">
           <motion.div
@@ -40,13 +39,14 @@ function App() {
           >
             <p className="text-gray-400 mb-3">
               <span className="transition-color ease-in-out duration-700 hover:text-white">
-                I am a second-year Informatics student at Universitas Multimedia
-                Nusantara with a strong passion for learning and skill
-                development. Currently focused on frontend development, I am
-                also expanding my expertise in backend development and
-                cybersecurity. In addition to my academic pursuits, I enjoy
-                photography and videography. I am dedicated to exploring new
-                interests and continuously improving my abilities.
+                Second-year Informatics student at Universitas Multimedia
+                Nusantara with a strong focus on system engineering, networking,
+                and cybersecurity. Actively involved in building simulated
+                infrastructures, managing Linux based systems and configuring
+                networks. In parallel, I also contribute to fullstack web
+                development projects. Passionate about designing secure and
+                scalable systems, and always eager to learn and grow through
+                real-world problem solving and collaboration.
               </span>
             </p>
           </motion.div>
@@ -225,7 +225,6 @@ function App() {
           </a>
         </div>
       </div>
-      {/* Image Section */}
 
       <div className="lg:w-2/5 flex justify-center lg:justify-end items-end brightness-200 grayscale hover:grayscale-0 transition ease-in-out duration-500 ">
         <motion.div
