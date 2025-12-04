@@ -20,7 +20,7 @@ function App() {
               ease: [0, 0.5, 0.3, 0.8],
             }}
           >
-            <span className="name-animation transition ease-in-out duration-500 hover:-translate-y-1">
+            <span className="name-animation transition ease-in-out duration-400 hover:-translate-y-1">
               Steven Jonathan
             </span>
           </motion.div>
