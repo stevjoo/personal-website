@@ -226,7 +226,7 @@ function App() {
         </div>
       </div>
 
-      <div className="lg:w-2/5 flex justify-center lg:justify-end items-end brightness-200 grayscale hover:grayscale-0 transition ease-in-out duration-500 ">
+      <div className="lg:w-2/5 flex justify-center lg:justify-end items-end brightness-100 grayscale hover:grayscale-0 transition ease-in-out duration-500 ">
         <motion.div
           className="object-cover h-full w-full"
           initial={{ x: "0%", opacity: 0 }}
