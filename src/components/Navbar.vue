@@ -16,7 +16,7 @@ const isClickScrolling = ref(false);
 function getHeaderOffset() {
   const header = document.querySelector("header");
   const headerH = header?.offsetHeight ?? 0;
-  return headerH + 16; 
+  return headerH + 16;
 }
 
 function goTo(id) {
@@ -55,13 +55,13 @@ function updateActive() {
   }
 
   const bottomReached =
-    window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    window.innerHeight + window.scrollY >=
+    document.documentElement.scrollHeight - 2;
 
   if (bottomReached) current = items[items.length - 1].id;
 
   activeId.value = current;
 }
-
 
 function onScroll() {
   if (rafId) return;
@@ -85,9 +85,28 @@ onBeforeUnmount(() => {
   <header
     class="sticky top-0 z-50 border-b border-gray-700/60 bg-gray-800/70 backdrop-blur-xl"
   >
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+    <div class="mx-auto flex max-w-6xl items-center px-4 py-3">
+      <nav class="hidden items-center gap-1 md:flex">
+        <button
+          v-for="it in items"
+          :key="it.id"
+          @click="goTo(it.id)"
+          class="relative rounded-xl px-3 py-2 text-sm transition active:scale-[0.98]"
+          :class="
+            activeId === it.id ? 'text-white' : 'text-white/75 hover:text-white'
+          "
+        >
+          <span class="relative z-10">{{ it.label }}</span>
+
+          <span
+            v-if="activeId === it.id"
+            class="absolute -bottom-1 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-yellow-400 transition-all duration-300 ease-out"
+          ></span>
+        </button>
+      </nav>
+
       <button
-        class="group text-left transition active:scale-[0.98]"
+        class="ml-auto group text-right transition active:scale-[0.98]"
         @click="goTo('top')"
       >
         <div class="text-sm font-semibold text-white">
@@ -97,24 +116,6 @@ onBeforeUnmount(() => {
           Personal Website
         </div>
       </button>
-
-      <nav class="hidden items-center gap-1 md:flex">
-        <button
-          v-for="it in items"
-          :key="it.id"
-          @click="goTo(it.id)"
-          class="relative rounded-xl px-3 py-2 text-sm transition active:scale-[0.98]"
-          :class="activeId === it.id ? 'text-white' : 'text-white/75 hover:text-white'"
-        >
-
-          <span class="relative z-10">{{ it.label }}</span>
-
-          <span
-            v-if="activeId === it.id"
-            class="absolute -bottom-1 left-1/2 h-0.5 w-6 -translate-x-1/2 rounded-full bg-yellow-400 transition-all duration-300 ease-out"
-          ></span>
-        </button>
-      </nav>
     </div>
   </header>
 </template>
