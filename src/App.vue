@@ -290,7 +290,7 @@ onMounted(() => {
               <div class="text-right text-sm text-white/70">{{ e.period }}</div>
             </div>
             <div class="mt-3 text-sm">
-              <span class="text-white/70">GPA:</span>
+              <span class="text-white/70">GPA: </span>
               <span class="font-semibold text-yellow-400"> {{ e.gpa }}</span>
             </div>
           </Card>
