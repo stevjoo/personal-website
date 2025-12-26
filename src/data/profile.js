@@ -174,7 +174,7 @@ export const profile = {
       name: "Arusta Website",
       stack: "Laravel, TailwindCSS",
       linkLabel: "github.com/stevjoo/arusta-web",
-      link: "https://github.com/stevjoo/arusta-web",
+      repo: "https://github.com/stevjoo/arusta-web",
       bullets: [
         "Developed a web platform for a UMKM photography business.",
         "Implemented clean responsive UI for browsing/ordering services.",
@@ -185,7 +185,7 @@ export const profile = {
       name: "Infinite 2024 Website",
       stack: "Laravel, Inertia, React, Bun",
       linkLabel: "github.com/stevjoo/infinite24-web",
-      link: "https://github.com/stevjoo/infinite24-web",
+      repo: "https://github.com/stevjoo/infinite24-web",
       bullets: [
         "Developed a modern responsive event website using Laravel + Inertia + React.",
         "Applied component-based architecture for maintainability and scalability.",

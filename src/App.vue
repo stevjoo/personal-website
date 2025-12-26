@@ -7,13 +7,57 @@ import SectionTitle from "./components/SectionTitle.vue";
 import Badge from "./components/Badge.vue";
 import Card from "./components/Card.vue";
 import { profile } from "./data/profile.js";
-import { MapPin, Mail, Github, Linkedin, FileText } from "lucide-vue-next";
+import {
+  MapPin,
+  Mail,
+  Github,
+  Linkedin,
+  FileText,
+  Globe,
+  Link as LinkIcon,
+  ExternalLink,
+} from "lucide-vue-next";
 
 gsap.registerPlugin(ScrollTrigger);
 
+function normalizeUrl(url) {
+  if (!url) return "";
+  if (/^https?:\/\//i.test(url) || /^mailto:/i.test(url)) return url;
+  return `https://${url}`;
+}
+
 function openLink(url) {
-  if (!url || url === "#") return;
-  window.open(url, "_blank", "noopener,noreferrer");
+  const u = normalizeUrl(url);
+  if (!u || u === "#") return;
+  window.open(u, "_blank", "noopener,noreferrer");
+}
+
+function isGithubUrl(url = "") {
+  return /github\.com/i.test(url);
+}
+function isWebsiteUrl(url = "") {
+  return !!url && !isGithubUrl(url) && !/^mailto:/i.test(url);
+}
+
+/**
+ * FIXED SLOTS:
+ * - GitHub: ambil dari p.repo atau (p.link kalau github) atau fallback dari label/linkLabel bila mengandung github
+ * - Website: ambil dari p.link kalau non-github
+ */
+function getProjectActionsFixed(p) {
+  const link = p?.link || "";
+  const repo = p?.repo || "";
+
+  // Repo bisa berada di: repo, atau link (kalau link github)
+  const repoUrl = repo || (isGithubUrl(link) ? link : "");
+
+  // Website/live demo: link non-github
+  const liveUrl = isWebsiteUrl(link) ? link : "";
+
+  return [
+    { key: "github", label: "GitHub", href: repoUrl || null, Icon: Github },
+    { key: "website", label: "Website", href: liveUrl || null, Icon: Globe },
+  ];
 }
 
 const github = profile.links?.find((l) => l.label?.toLowerCase() === "github");
@@ -49,14 +93,14 @@ onMounted(() => {
 
   tl.fromTo(
     ".hero-stagger-img",
-    { scale: 0.8, opacity: 0 }, 
+    { scale: 0.8, opacity: 0 },
     {
       scale: 1,
       opacity: 1,
       duration: 1.2,
       ease: "back.out(1.2)",
     },
-    "-=0.8" 
+    "-=0.8"
   );
 
   const sections = [
@@ -317,27 +361,70 @@ onMounted(() => {
 
       <section id="projects" class="mt-14 scroll-mt-24">
         <SectionTitle>Projects</SectionTitle>
-        <div class="grid gap-4 md:grid-cols-2">
+
+        <div class="grid gap-2 md:grid-cols-2">
           <Card
             v-for="p in profile.projects"
             :key="p.name"
-            class="transition hover:-translate-y-0.5 hover:border-yellow-400"
+            class="group flex h-full flex-col transition hover:-translate-y-0.5 hover:border-yellow-400"
           >
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <div class="text-base font-semibold">{{ p.name }}</div>
-                <div class="mt-1 text-sm text-white/70">{{ p.stack }}</div>
+            <div class="flex-1 p-1">
+              <div class="min-w-0">
+                <h3
+                  class="text-xl font-semibold leading-snug tracking-tight font-semibold"
+                >
+                  {{ p.name }}
+                </h3>
+
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <Badge
+                    v-for="t in p.stack
+                      .split(',')
+                      .map((s) => s.trim())
+                      .filter(Boolean)"
+                    :key="t"
+                    class="transition hover:-translate-y-0.5 hover:border-yellow-400"
+                  >
+                    {{ t }}
+                  </Badge>
+                </div>
               </div>
-              <button
-                class="shrink-0 rounded-xl border border-gray-700 bg-gray-900 px-3 py-2 text-xs transition hover:border-yellow-400"
-                @click="openLink(p.link)"
-              >
-                <span class="text-yellow-400">{{ p.linkLabel }}</span>
-              </button>
+
+              <ul class="mt-5 space-y-2 text-sm text-white/85">
+                <li v-for="b in p.bullets" :key="b" class="flex gap-2">
+                  <span
+                    class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-yellow-400/90"
+                  ></span>
+                  <span class="leading-relaxed">{{ b }}</span>
+                </li>
+              </ul>
             </div>
-            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-white/85">
-              <li v-for="b in p.bullets" :key="b">{{ b }}</li>
-            </ul>
+
+            <div class="h-px w-full mt-2 bg-white/10"></div>
+
+            <div class="px-6 py-4">
+              <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                <button
+                  v-for="a in getProjectActionsFixed(p)"
+                  :key="a.key"
+                  :disabled="!a.href"
+                  class="flex w-full items-center justify-center gap-2 rounded-2xl border px-5 py-2.5 text-sm font-semibold transition duration-200"
+                  :class="
+                    a.href
+                      ? 'border-gray-700 bg-gray-900 text-white hover:-translate-y-0.5 hover:border-yellow-400'
+                      : 'border-gray-800 bg-gray-900/40 text-white/35 cursor-not-allowed'
+                  "
+                  @click="a.href && openLink(a.href)"
+                >
+                  <component
+                    :is="a.Icon"
+                    class="h-4 w-4"
+                    :class="a.href ? 'text-yellow-400' : 'text-white/30'"
+                  />
+                  {{ a.label }}
+                </button>
+              </div>
+            </div>
           </Card>
         </div>
       </section>
