@@ -1,16 +1,15 @@
 <script setup>
+import { onMounted } from "vue";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import Navbar from "./components/Navbar.vue";
 import SectionTitle from "./components/SectionTitle.vue";
 import Badge from "./components/Badge.vue";
 import Card from "./components/Card.vue";
 import { profile } from "./data/profile.js";
-import {
-  MapPin,
-  Mail,
-  Github,
-  Linkedin,
-  FileText
-} from "lucide-vue-next";
+import { MapPin, Mail, Github, Linkedin, FileText } from "lucide-vue-next";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function openLink(url) {
   if (!url || url === "#") return;
@@ -21,6 +20,79 @@ const github = profile.links?.find((l) => l.label?.toLowerCase() === "github");
 const linkedin = profile.links?.find(
   (l) => l.label?.toLowerCase() === "linkedin"
 );
+
+onMounted(() => {
+  const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+  tl.fromTo(
+    ".hero-stagger-text",
+    { y: 30, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      stagger: 0.15,
+    }
+  );
+
+  tl.fromTo(
+    ".hero-stagger-actions",
+    { y: 20, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      stagger: 0.1,
+    },
+    "-=0.4"
+  );
+
+  tl.fromTo(
+    ".hero-stagger-img",
+    { scale: 0.8, opacity: 0 }, 
+    {
+      scale: 1,
+      opacity: 1,
+      duration: 1.2,
+      ease: "back.out(1.2)",
+    },
+    "-=0.8" 
+  );
+
+  const sections = [
+    "#about",
+    "#education",
+    "#skills",
+    "#experience",
+    "#projects",
+    "#competitions",
+  ];
+
+  sections.forEach((sectionId) => {
+    const element = document.querySelector(sectionId);
+
+    if (element) {
+      gsap.fromTo(
+        element,
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+  });
+});
 </script>
 
 <template>
@@ -46,11 +118,10 @@ const linkedin = profile.links?.find(
     <Navbar />
 
     <main class="relative mx-auto max-w-6xl px-4 py-10">
-      <!-- HERO -->
-      <section class="grid gap-10 lg:grid-cols-12 lg:items-center">
-        <div class="lg:col-span-7 animate-fade-up">
+      <section id="hero" class="grid gap-10 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-7">
           <div
-            class="inline-flex items-center gap-2 rounded-full border border-gray-700 bg-gray-900/70 px-3 py-1 text-xs text-white/70"
+            class="hero-stagger-text inline-flex items-center gap-2 rounded-full border border-gray-700 bg-gray-900/70 px-3 py-1 text-xs text-white/70"
           >
             <span
               class="h-1.5 w-1.5 animate-pulse rounded-full bg-yellow-400"
@@ -58,20 +129,26 @@ const linkedin = profile.links?.find(
             Available for internships / projects
           </div>
 
-          <div class="mt-4 flex items-center gap-2 text-sm text-white/70">
+          <div
+            class="hero-stagger-text mt-4 flex items-center gap-2 text-sm text-white/70"
+          >
             <MapPin class="h-4 w-4 text-yellow-400" />
             <span>{{ profile.location }}</span>
           </div>
 
-          <h1 class="mt-2 text-3xl font-bold leading-tight md:text-5xl">
+          <h1
+            class="hero-stagger-text mt-2 text-3xl font-bold leading-tight md:text-5xl"
+          >
             {{ profile.name }}<span class="text-yellow-400">.</span>
           </h1>
 
-          <p class="mt-3 max-w-2xl text-base text-white/80 md:text-lg">
+          <p
+            class="hero-stagger-text mt-3 max-w-2xl text-base text-white/80 md:text-lg"
+          >
             {{ profile.headline }}
           </p>
 
-          <div class="mt-6 flex flex-wrap gap-2">
+          <div class="hero-stagger-actions mt-6 flex flex-wrap gap-2">
             <a
               :href="`mailto:${profile.email}`"
               class="inline-flex"
@@ -86,7 +163,9 @@ const linkedin = profile.links?.find(
             </a>
           </div>
 
-          <div class="mt-6 flex flex-wrap items-center gap-3">
+          <div
+            class="hero-stagger-actions mt-6 flex flex-wrap items-center gap-3"
+          >
             <a
               href="/CV.pdf"
               target="_blank"
@@ -117,8 +196,10 @@ const linkedin = profile.links?.find(
           </div>
         </div>
 
-        <div class="lg:col-span-5 animate-fade-in">
-          <div class="relative mx-auto w-full max-w-sm lg:max-w-none">
+        <div class="lg:col-span-5">
+          <div
+            class="hero-stagger-img relative mx-auto w-full max-w-sm lg:max-w-none"
+          >
             <div
               class="pointer-events-none absolute -inset-4 rounded-3xl bg-yellow-400/10 blur-2xl"
             />
@@ -137,7 +218,6 @@ const linkedin = profile.links?.find(
         </div>
       </section>
 
-      <!-- ABOUT -->
       <section id="about" class="mt-14 scroll-mt-24">
         <SectionTitle>About</SectionTitle>
         <Card class="relative overflow-hidden">
@@ -150,7 +230,6 @@ const linkedin = profile.links?.find(
         </Card>
       </section>
 
-      <!-- EDUCATION -->
       <section id="education" class="mt-14 scroll-mt-24">
         <SectionTitle>Education</SectionTitle>
         <div class="grid gap-4 md:grid-cols-2">
@@ -174,7 +253,6 @@ const linkedin = profile.links?.find(
         </div>
       </section>
 
-      <!-- TECHNICAL SKILLS -->
       <section id="skills" class="mt-14 scroll-mt-24">
         <SectionTitle>Technical Skills</SectionTitle>
 
@@ -211,7 +289,6 @@ const linkedin = profile.links?.find(
         </div>
       </section>
 
-      <!-- EXPERIENCE -->
       <section id="experience" class="mt-14 scroll-mt-24">
         <SectionTitle>Organizational Experience</SectionTitle>
         <div class="grid gap-4">
@@ -238,7 +315,6 @@ const linkedin = profile.links?.find(
         </div>
       </section>
 
-      <!-- PROJECTS -->
       <section id="projects" class="mt-14 scroll-mt-24">
         <SectionTitle>Projects</SectionTitle>
         <div class="grid gap-4 md:grid-cols-2">
@@ -266,7 +342,6 @@ const linkedin = profile.links?.find(
         </div>
       </section>
 
-      <!-- COMPETITIONS -->
       <section id="competitions" class="mt-14 scroll-mt-24">
         <SectionTitle>Competitions</SectionTitle>
         <div class="grid gap-4">

@@ -6,11 +6,16 @@
 .bg-blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(80px);
-  opacity: 0.35;
+  width: clamp(180px, 30vw, 520px);
+  height: clamp(180px, 30vw, 520px);
+  filter: blur(clamp(40px, 6vw, 80px));
+  opacity: 0.28;
   animation: float-random 28s ease-in-out infinite;
   will-change: transform;
+  max-width: 90vw;
+  max-height: 90vw;
 }
+
 
 /* Variasi biar geraknya tidak seragam */
 .bg-blob.blob-1 {
