@@ -14,6 +14,7 @@ import {
   Linkedin,
   FileText,
   Globe,
+  Instagram,
   Link as LinkIcon,
   ExternalLink,
 } from "lucide-vue-next";
@@ -39,19 +40,12 @@ function isWebsiteUrl(url = "") {
   return !!url && !isGithubUrl(url) && !/^mailto:/i.test(url);
 }
 
-/**
- * FIXED SLOTS:
- * - GitHub: ambil dari p.repo atau (p.link kalau github) atau fallback dari label/linkLabel bila mengandung github
- * - Website: ambil dari p.link kalau non-github
- */
 function getProjectActionsFixed(p) {
   const link = p?.link || "";
   const repo = p?.repo || "";
 
-  // Repo bisa berada di: repo, atau link (kalau link github)
   const repoUrl = repo || (isGithubUrl(link) ? link : "");
 
-  // Website/live demo: link non-github
   const liveUrl = isWebsiteUrl(link) ? link : "";
 
   return [
@@ -63,6 +57,9 @@ function getProjectActionsFixed(p) {
 const github = profile.links?.find((l) => l.label?.toLowerCase() === "github");
 const linkedin = profile.links?.find(
   (l) => l.label?.toLowerCase() === "linkedin"
+);
+const instagram = profile.links?.find(
+  (l) => l.label?.toLowerCase() === "instagram"
 );
 
 onMounted(() => {
@@ -230,6 +227,15 @@ onMounted(() => {
             </button>
 
             <button
+              v-if="instagram?.href"
+              class="flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400"
+              @click="openLink(instagram.href)"
+            >
+              <Instagram class="h-4 w-4 text-yellow-400" />
+              Instagram
+            </button>
+
+            <button
               v-if="linkedin?.href"
               class="flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400"
               @click="openLink(linkedin.href)"
@@ -249,7 +255,7 @@ onMounted(() => {
             />
 
             <div
-              class="relative aspect-square w-full overflow-hidden rounded-3xl"
+              class="relative aspect-square w-full border-3 border-gray-700 overflow-hidden rounded-3xl transition duration-500 hover:scale-102 hover:border-yellow-400"
             >
               <img
                 src="/me.jpg"
@@ -264,7 +270,7 @@ onMounted(() => {
 
       <section id="about" class="mt-14 scroll-mt-24">
         <SectionTitle>About</SectionTitle>
-        <Card class="relative overflow-hidden">
+        <Card class="relative overflow-hidden transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400">
           <div
             class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-yellow-400/10 blur-3xl"
           />
@@ -450,7 +456,7 @@ onMounted(() => {
         <div class="text-center text-xs text-white/60">
           © {{ new Date().getFullYear() }}
           <span class="font-semibold text-white">{{ profile.name }}</span
-          >. All rights reserved.
+          ><span class="text-yellow-400">.</span> All rights reserved.
         </div>
         <div class="my-3 h-px w-full"></div>
         <div class="mx-auto max-w-6xl px-4">
@@ -464,6 +470,19 @@ onMounted(() => {
               aria-label="GitHub"
             >
               <Github
+                class="h-5 w-5 text-white/70 transition group-hover:text-yellow-400"
+              />
+            </a>
+
+            <a
+              v-if="instagram?.href"
+              :href="instagram.href"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-xl border border-gray-700 bg-gray-900 p-3 transition hover:-translate-y-0.5 hover:border-yellow-400"
+              aria-label="Instagram"
+            >
+              <Instagram
                 class="h-5 w-5 text-white/70 transition group-hover:text-yellow-400"
               />
             </a>
