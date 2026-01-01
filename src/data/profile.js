@@ -137,6 +137,19 @@ export const profile = {
 
   projects: [
     {
+      name: "EDR-lite (Endpoint Detection Tool)",
+      stack: "Rust, Windows API, sysinfo",
+      linkLabel: "github.com/stevjoo/edr-lite",
+      link: "https://github.com/stevjoo/edr-lite",
+      bullets: [
+        "Developed a lightweight Windows endpoint detection tool (EDR-lite) using Rust.",
+        "Implemented process monitoring and behavioral detection for suspicious execution patterns.",
+        "Detected common Living-off-the-Land binaries (LOLBins) and executions from user-writable paths.",
+        "Generated structured JSON logs for SOC-style analysis and incident triage.",
+      ],
+    },
+
+    {
       name: "BYTE 2025 Website",
       stack: "Laravel, Inertia, Vue",
       linkLabel: "byteumn.com",
