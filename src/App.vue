@@ -272,7 +272,7 @@ onMounted(() => {
         <SectionTitle>About</SectionTitle>
         <Card class="relative overflow-hidden transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400">
           <div
-            class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-yellow-400/10 blur-3xl"
+            class="absolute -right-24 -top-24 h-56 w-56 rounded-full"
           />
           <p class="relative leading-relaxed text-white/85">
             {{ profile.summary }}

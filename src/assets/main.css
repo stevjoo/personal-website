@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: 'Jost', sans-serif;
+}
+
 .bg-blob {
   position: absolute;
   border-radius: 9999px;
