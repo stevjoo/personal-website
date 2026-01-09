@@ -167,7 +167,7 @@ onMounted(() => {
             <span
               class="h-1.5 w-1.5 animate-pulse rounded-full bg-yellow-400"
             ></span>
-            Available for internships / projects
+            Available for Projects
           </div>
 
           <div
