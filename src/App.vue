@@ -214,7 +214,7 @@ onMounted(() => {
               class="flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400"
             >
               <FileText class="h-4 w-4 text-yellow-400" />
-              Download CV
+              CV
             </a>
 
             <button
@@ -251,7 +251,7 @@ onMounted(() => {
             class="hero-stagger-img relative mx-auto w-full max-w-sm lg:max-w-none"
           >
             <div
-              class="pointer-events-none absolute -inset-4 rounded-3xl bg-yellow-400/10 blur-2xl"
+              class="pointer-events-none absolute -inset-4 rounded-3xl md:bg-yellow-400/10 md:blur-2xl"
             />
 
             <div

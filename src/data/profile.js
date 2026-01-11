@@ -1,12 +1,12 @@
 export const profile = {
   name: "Steven Jonathan",
-  headline: "Networking Engineer | Cybersecurity Analyst | Software Developer",
+  headline: "Network Engineer | Cybersecurity Analyst | Software Developer",
   location: "Jakarta Metropolitan Area",
   email: "steven.jonathan2005@gmail.com",
   links: [
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/steven-jonathan-33a9b8315",
+      href: "https://www.linkedin.com/in/stevenjonathan-id",
     },
     { label: "GitHub", href: "https://github.com/stevjoo" },
     { label: "Instagram", href: "https://instagram.com/stev.jo__" },
