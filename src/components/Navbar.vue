@@ -5,7 +5,8 @@ const items = [
   { id: "about", label: "About" },
   { id: "education", label: "Education" },
   { id: "skills", label: "Skills" },
-  { id: "experience", label: "Experience" },
+  { id: "work", label: "Work Experience" },
+  { id: "experience", label: "Organizational Experience" },
   { id: "projects", label: "Projects" },
   { id: "competitions", label: "Competitions" },
 ];
@@ -86,7 +87,7 @@ onBeforeUnmount(() => {
     class="sticky top-0 z-50 border-b border-gray-700/60 bg-gray-800/70 backdrop-blur-xl"
   >
     <div class="mx-auto flex max-w-6xl items-center px-4 py-3">
-      <nav class="hidden items-center gap-1 md:flex">
+      <nav class="hidden items-center gap-1 lg:flex">
         <button
           v-for="it in items"
           :key="it.id"

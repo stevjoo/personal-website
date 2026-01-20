@@ -19,7 +19,7 @@ export const profile = {
       school: "Universitas Multimedia Nusantara",
       period: "Aug 2023 - Jun 2027",
       degree: "Bachelor of Informatics Engineering",
-      gpa: "3.76/4.00",
+      gpa: "3.78/4.00",
     },
   ],
 
@@ -53,6 +53,21 @@ export const profile = {
         "Bahasa Indonesia (Native)",
         "English (Professional)",
         "Mandarin (Elementary)",
+      ],
+    },
+  ],
+
+  work: [
+    {
+      role: "Network Engineer Intern",
+      company: "PT. RJGF International Indonesia",
+      period: "Feb 2026 - Present",
+      bullets: [
+        "Assist in presenting IT products and network solutions to customers.",
+        "Support quotation preparation and recommend suitable products based on customer requirements.",
+        "Help troubleshoot basic to intermediate network issues (on-site and remote), including deployment, configuration, and testing under supervision.",
+        "Assist in designing simple network topologies and preparing documentation (topology, BoQ, proposals).",
+        "Follow up with customers and partners for project updates and technical requirement clarifications, and support sales/solution engineers with presentations, reports, and training materials.",
       ],
     },
   ],
@@ -240,7 +255,7 @@ export const profile = {
           items: ["TCP/IP", "VLAN", "Subnetting", "Routing"],
         },
         { label: "Security", items: ["Firewall", "IDS/IPS"] },
-        { label: "Tools", items: ["Wireshark", "Nmap", "Burp Suite"] },
+        { label: "Tools", items: ["Wireshark", "Nmap", "Burp Suite", "GNS3"] },
       ],
     },
     {
@@ -248,7 +263,7 @@ export const profile = {
       groups: [
         { label: "Frontend", items: ["Vue", "React", "TailwindCSS"] },
         { label: "Backend", items: ["Node.js", "Express", "Laravel"] },
-        { label: "Database", items: ["MySQL"] },
+        { label: "Database", items: ["MySQL", "Firebase"] },
       ],
     },
   ],

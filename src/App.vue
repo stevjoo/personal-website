@@ -104,6 +104,7 @@ onMounted(() => {
     "#about",
     "#education",
     "#skills",
+    "#work",
     "#experience",
     "#projects",
     "#competitions",
@@ -270,10 +271,10 @@ onMounted(() => {
 
       <section id="about" class="mt-14 scroll-mt-24">
         <SectionTitle>About</SectionTitle>
-        <Card class="relative overflow-hidden transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400">
-          <div
-            class="absolute -right-24 -top-24 h-56 w-56 rounded-full"
-          />
+        <Card
+          class="relative overflow-hidden transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400"
+        >
+          <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full" />
           <p class="relative leading-relaxed text-white/85">
             {{ profile.summary }}
           </p>
@@ -335,6 +336,33 @@ onMounted(() => {
                 </div>
               </div>
             </div>
+          </Card>
+        </div>
+      </section>
+
+      <section id="work" class="mt-14 scroll-mt-24">
+        <SectionTitle>Work Experience</SectionTitle>
+        <div class="grid gap-4">
+          <Card
+            v-for="w in profile.work"
+            :key="w.role + w.company + w.period"
+            class="transition hover:-translate-y-0.5 hover:border-yellow-400"
+          >
+            <div
+              class="flex flex-col justify-between gap-2 md:flex-row md:items-start"
+            >
+              <div>
+                <div class="text-base font-semibold">
+                  {{ w.role }} <span class="text-yellow-400">@</span>
+                  {{ w.company }}
+                </div>
+                <div class="text-sm text-white/70">{{ w.period }}</div>
+              </div>
+            </div>
+
+            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-white/85">
+              <li v-for="b in w.bullets" :key="b">{{ b }}</li>
+            </ul>
           </Card>
         </div>
       </section>
