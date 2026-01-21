@@ -110,11 +110,8 @@ onBeforeUnmount(() => {
         class="ml-auto group text-right transition active:scale-[0.98]"
         @click="goTo('top')"
       >
-        <div class="text-sm font-semibold text-white">
+        <div class="text-md font-semibold text-white">
           Steven Jonathan<span class="text-yellow-400">.</span>
-        </div>
-        <div class="text-xs text-white/60 transition group-hover:text-white/75">
-          Personal Website
         </div>
       </button>
     </div>
