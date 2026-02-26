@@ -93,7 +93,6 @@ export const profile = {
         "Conducted research to support the planning and execution of key work programs.",
         "Served as Person in Charge (PIC) for company visits, managing outreach and communication with partner companies.",
         "Assisted in preparing technical equipment (mixers, projectors, audio systems) prior to internal meetings and events.",
-        "Collaborated with fellow R&D members to evaluate and improve organizational initiatives through data-driven insights.",
       ],
     },
     {
@@ -103,6 +102,7 @@ export const profile = {
       bullets: [
         "Coordinated and led the web development team for BYTE 2025, working closely with visual design and publication divisions.",
         "Developed a comprehensive event management system using Laravel and Vue.js, including secure authentication for users and committee members.",
+        "Developed the frontend interface with Vue.js and TailwindCSS to ensure responsiveness and user engagement.",
         "Led and shaped UI/UX direction to ensure a user-friendly and visually consistent interface.",
       ],
     },
@@ -135,7 +135,7 @@ export const profile = {
       bullets: [
         "Oversaw end-to-end logistics planning for a national-level hackathon event.",
         "Coordinated event area setup (judge tables, demo zones, rest areas).",
-        "Ensured availability of technical equipment (routers, projectors, backup power supplies).",
+        "Ensured availability of technical equipment.",
       ],
     },
     {
