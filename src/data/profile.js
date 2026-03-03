@@ -10,6 +10,7 @@ export const profile = {
     },
     { label: "GitHub", href: "https://github.com/stevjoo" },
     { label: "Instagram", href: "https://instagram.com/stev.jo__" },
+    { label: "WhatsApp", href: "https://wa.me/628561396967" },
   ],
   summary:
     "Third-year Informatics student at Universitas Multimedia Nusantara with a strong focus on system engineering, networking, and cybersecurity. Actively involved in building simulated infrastructures, managing Linux based systems and configuring networks. In parallel, I also contribute to fullstack web development and software development projects. Passionate about designing secure and scalable systems, and always eager to learn and grow through real-world problem solving and collaboration.",
