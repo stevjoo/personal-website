@@ -104,11 +104,6 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <!-- 
-    PERFORMA: `will-change: transform` + `transform: translateZ(0)` di header
-    mengangkat navbar ke GPU layer sendiri sehingga backdrop-blur
-    tidak trigger repaint seluruh halaman saat scroll.
-  -->
   <header class="navbar-header sticky top-0 z-50 border-b border-gray-700/60 bg-gray-800/70 backdrop-blur-xl">
     <div class="mx-auto flex max-w-6xl items-center px-4 py-3">
 
@@ -153,7 +148,6 @@ onBeforeUnmount(() => {
         </button>
       </nav>
 
-      <!-- Brand -->
       <button
         class="ml-auto text-right transition active:scale-[0.98]"
         @click="goTo('top')"
@@ -213,17 +207,11 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-/*
-  GPU layer untuk header — ini yang paling penting untuk performa scroll.
-  transform: translateZ(0) mengangkat elemen ke composite layer sendiri
-  sehingga backdrop-blur tidak memaksa browser repaint seluruh halaman.
-*/
 .navbar-header {
   transform: translateZ(0);
   will-change: transform;
 }
 
-/* Desktop nav hover */
 .desktop-nav-btn::before {
   content: '';
   position: absolute;
@@ -236,17 +224,14 @@ onBeforeUnmount(() => {
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* Active pill — pakai background biasa, bukan backdrop-blur */
 .active-pill {
   background: rgba(255, 255, 255, 0.07);
 }
 
-/* Drawer position */
 .mobile-drawer {
   top: var(--navbar-height, 57px);
 }
 
-/* Mobile item transition */
 .mobile-nav-item {
   transition: color 0.2s ease, transform 0.22s ease, opacity 0.22s ease, background 0.15s ease;
 }
