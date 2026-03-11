@@ -21,6 +21,9 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Paksa GSAP pakai GPU-only properties, matikan recalc yang tidak perlu
+ScrollTrigger.config({ ignoreMobileResize: true });
+
 function normalizeUrl(url) {
   if (!url) return "";
   if (/^https?:\/\//i.test(url) || /^mailto:/i.test(url)) return url;
@@ -43,11 +46,8 @@ function isWebsiteUrl(url = "") {
 function getProjectActionsFixed(p) {
   const link = p?.link || "";
   const repo = p?.repo || "";
-
   const repoUrl = repo || (isGithubUrl(link) ? link : "");
-
   const liveUrl = isWebsiteUrl(link) ? link : "";
-
   return [
     { key: "github", label: "GitHub", href: repoUrl || null, Icon: Github },
     { key: "website", label: "Website", href: liveUrl || null, Icon: Globe },
@@ -71,35 +71,20 @@ onMounted(() => {
   tl.fromTo(
     ".hero-stagger-text",
     { y: 30, opacity: 0 },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 0.8,
-      stagger: 0.15,
-    },
+    { y: 0, opacity: 1, duration: 0.8, stagger: 0.15 },
   );
 
   tl.fromTo(
     ".hero-stagger-actions",
     { y: 20, opacity: 0 },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 0.6,
-      stagger: 0.1,
-    },
+    { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 },
     "-=0.4",
   );
 
   tl.fromTo(
     ".hero-stagger-img",
     { scale: 0.8, opacity: 0 },
-    {
-      scale: 1,
-      opacity: 1,
-      duration: 1.2,
-      ease: "back.out(1.2)",
-    },
+    { scale: 1, opacity: 1, duration: 1.2, ease: "back.out(1.2)" },
     "-=0.8",
   );
 
@@ -115,27 +100,25 @@ onMounted(() => {
 
   sections.forEach((sectionId) => {
     const element = document.querySelector(sectionId);
+    if (!element) return;
 
-    if (element) {
-      gsap.fromTo(
-        element,
-        {
-          opacity: 0,
-          y: 50,
+    gsap.fromTo(
+      element,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: element,
+          start: "top 88%",
+          // "play none none none" + once:true = animasi jalan sekali, tidak reverse
+          // Ini jauh lebih ringan dari toggleActions reverse
+          once: true,
         },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: element,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        },
-      );
-    }
+      },
+    );
   });
 });
 </script>
@@ -146,15 +129,12 @@ onMounted(() => {
       <div
         class="bg-blob blob-1 absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 bg-yellow-400"
       ></div>
-
       <div
         class="bg-blob blob-2 absolute top-1/3 -left-40 h-[420px] w-[420px] bg-yellow-400"
       ></div>
-
       <div
         class="bg-blob blob-3 absolute bottom-[-200px] right-[-200px] h-[560px] w-[560px] bg-yellow-400"
       ></div>
-
       <div
         class="absolute inset-0 bg-gradient-to-b from-gray-900/30 to-gray-900/60"
       ></div>
@@ -200,7 +180,7 @@ onMounted(() => {
               title="Email"
             >
               <Badge
-                class="flex items-center gap-2 py-2 cursor-pointer transition hover:-translate-y-0.5 hover:border-yellow-400"
+                class="flex items-center gap-2 py-2 cursor-pointer card-glow"
               >
                 <Mail class="h-4 w-4 text-yellow-400" />
                 {{ profile.email }}
@@ -211,10 +191,10 @@ onMounted(() => {
           <div
             class="hero-stagger-actions mt-6 flex flex-wrap items-center gap-3"
           >
-          <button
-          v-if="whatsapp?.href"
-          class="flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400"
-          @click="openLink(whatsapp.href)"
+            <button
+              v-if="whatsapp?.href"
+              class="social-btn flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white"
+              @click="openLink(whatsapp.href)"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -230,19 +210,19 @@ onMounted(() => {
               </svg>
               WhatsApp
             </button>
-            
+
             <button
               v-if="github?.href"
-              class="flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400"
+              class="social-btn flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white"
               @click="openLink(github.href)"
             >
               <Github class="h-4 w-4 text-yellow-400" />
               GitHub
             </button>
-  
+
             <button
               v-if="instagram?.href"
-              class="flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400"
+              class="social-btn flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white"
               @click="openLink(instagram.href)"
             >
               <Instagram class="h-4 w-4 text-yellow-400" />
@@ -251,7 +231,7 @@ onMounted(() => {
 
             <button
               v-if="linkedin?.href"
-              class="flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400"
+              class="social-btn flex items-center gap-2 rounded-2xl border border-gray-700 bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white"
               @click="openLink(linkedin.href)"
             >
               <Linkedin class="h-4 w-4 text-yellow-400" />
@@ -267,7 +247,6 @@ onMounted(() => {
             <div
               class="pointer-events-none absolute -inset-4 rounded-3xl md:bg-yellow-400/10 md:blur-2xl"
             />
-
             <div
               class="relative aspect-square w-full border-3 border-gray-700 overflow-hidden rounded-3xl transition duration-500 hover:scale-102 hover:border-yellow-400"
             >
@@ -284,9 +263,7 @@ onMounted(() => {
 
       <section id="about" class="mt-14 scroll-mt-24">
         <SectionTitle>About</SectionTitle>
-        <Card
-          class="relative overflow-hidden transition duration-200 hover:-translate-y-0.5 hover:border-yellow-400"
-        >
+        <Card class="card-glow relative overflow-hidden">
           <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full" />
           <p class="relative leading-relaxed text-white/85">
             {{ profile.summary }}
@@ -300,7 +277,7 @@ onMounted(() => {
           <Card
             v-for="e in profile.education"
             :key="e.school"
-            class="transition hover:-translate-y-0.5 hover:border-yellow-400"
+            class="card-glow"
           >
             <div class="flex items-start justify-between gap-4">
               <div>
@@ -311,7 +288,7 @@ onMounted(() => {
             </div>
             <div class="mt-3 text-sm">
               <span class="text-white/70">GPA: </span>
-              <span class="font-semibold text-yellow-400"> {{ e.gpa }}</span>
+              <span class="font-semibold text-yellow-400">{{ e.gpa }}</span>
             </div>
           </Card>
         </div>
@@ -319,17 +296,15 @@ onMounted(() => {
 
       <section id="skills" class="mt-14 scroll-mt-24">
         <SectionTitle>Technical Skills</SectionTitle>
-
         <div class="grid gap-4 md:grid-cols-3">
           <Card
             v-for="block in profile.technicalSkills"
             :key="block.title"
-            class="transition hover:-translate-y-0.5 hover:border-yellow-400"
+            class="card-glow"
           >
             <div class="text-base font-semibold">
               {{ block.title }}<span class="text-yellow-400">.</span>
             </div>
-
             <div class="mt-4 space-y-4">
               <div v-for="g in block.groups" :key="g.label">
                 <div
@@ -337,15 +312,10 @@ onMounted(() => {
                 >
                   {{ g.label }}
                 </div>
-
                 <div class="mt-2 flex flex-wrap gap-2">
-                  <Badge
-                    v-for="it in g.items"
-                    :key="it"
-                    class="transition hover:-translate-y-0.5 hover:border-yellow-400"
-                  >
-                    {{ it }}
-                  </Badge>
+                  <Badge v-for="it in g.items" :key="it" class="badge-glow">{{
+                    it
+                  }}</Badge>
                 </div>
               </div>
             </div>
@@ -355,74 +325,87 @@ onMounted(() => {
 
       <section id="work" class="mt-14 scroll-mt-24">
         <SectionTitle>Work Experience</SectionTitle>
-        <div class="grid gap-4">
+        <div class="grid gap-2 md:grid-cols-2">
           <Card
             v-for="w in profile.work"
             :key="w.role + w.company + w.period"
-            class="transition hover:-translate-y-0.5 hover:border-yellow-400"
+            class="card-glow group flex h-full flex-col"
           >
-            <div
-              class="flex flex-col justify-between gap-2 md:flex-row md:items-start"
-            >
-              <div>
-                <div class="text-base font-semibold">
-                  {{ w.role }} <span class="text-yellow-400">@</span>
-                  {{ w.company }}
+            <div class="flex-1 p-1">
+              <div class="min-w-0">
+                <h3 class="text-xl font-semibold leading-snug tracking-tight">
+                  {{ w.role }}
+                </h3>
+                <div
+                  class="mt-1 flex items-center gap-1 text-sm text-white/70 font-medium"
+                >
+                  <span>{{ w.company }}</span>
                 </div>
-                <div class="text-sm text-white/70">{{ w.period }}</div>
+                <div class="mt-1 flex items-center gap-1 text-sm text-white/50">
+                  <span>{{ w.period }}</span>
+                </div>
               </div>
+              <ul class="mt-5 space-y-2 text-sm text-white/85">
+                <li v-for="b in w.bullets" :key="b" class="flex gap-2">
+                  <span
+                    class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-yellow-400 shadow-[0_0_6px_rgba(250,204,21,0.6)]"
+                  ></span>
+                  <span class="leading-relaxed">{{ b }}</span>
+                </li>
+              </ul>
             </div>
-
-            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-white/85">
-              <li v-for="b in w.bullets" :key="b">{{ b }}</li>
-            </ul>
           </Card>
         </div>
       </section>
 
       <section id="experience" class="mt-14 scroll-mt-24">
         <SectionTitle>Organizational Experience</SectionTitle>
-        <div class="grid gap-4">
+        <div class="grid gap-2 md:grid-cols-2">
           <Card
             v-for="x in profile.experience"
             :key="x.role + x.org + x.period"
-            class="transition hover:-translate-y-0.5 hover:border-yellow-400"
+            class="card-glow group flex h-full flex-col"
           >
-            <div
-              class="flex flex-col justify-between gap-2 md:flex-row md:items-start"
-            >
-              <div>
-                <div class="text-base font-semibold">
-                  {{ x.role }} <span class="text-yellow-400">@</span>
-                  {{ x.org }}
+            <div class="flex-1 p-1">
+              <div class="min-w-0">
+                <h3 class="text-xl font-semibold leading-snug tracking-tight">
+                  {{ x.role }}
+                </h3>
+                <div
+                  class="mt-1 flex items-center gap-1 text-sm text-white/70 font-medium"
+                >
+                  <span>{{ x.org }}</span>
                 </div>
-                <div class="text-sm text-white/70">{{ x.period }}</div>
+                <div class="mt-1 flex items-center gap-1 text-sm text-white/50">
+                  <span>{{ x.period }}</span>
+                </div>
               </div>
+              <ul class="mt-5 space-y-2 text-sm text-white/85">
+                <li v-for="b in x.bullets" :key="b" class="flex gap-2">
+                  <span
+                    class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-yellow-400 shadow-[0_0_6px_rgba(250,204,21,0.6)]"
+                  ></span>
+                  <span class="leading-relaxed">{{ b }}</span>
+                </li>
+              </ul>
             </div>
-            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-white/85">
-              <li v-for="b in x.bullets" :key="b">{{ b }}</li>
-            </ul>
           </Card>
         </div>
       </section>
 
       <section id="projects" class="mt-14 scroll-mt-24">
         <SectionTitle>Projects</SectionTitle>
-
         <div class="grid gap-2 md:grid-cols-2">
           <Card
             v-for="p in profile.projects"
             :key="p.name"
-            class="group flex h-full flex-col transition hover:-translate-y-0.5 hover:border-yellow-400"
+            class="card-glow group flex h-full flex-col"
           >
             <div class="flex-1 p-1">
               <div class="min-w-0">
-                <h3
-                  class="text-xl font-semibold leading-snug tracking-tight font-semibold"
-                >
+                <h3 class="text-xl font-semibold leading-snug tracking-tight">
                   {{ p.name }}
                 </h3>
-
                 <div class="mt-4 flex flex-wrap gap-2">
                   <Badge
                     v-for="t in p.stack
@@ -430,35 +413,31 @@ onMounted(() => {
                       .map((s) => s.trim())
                       .filter(Boolean)"
                     :key="t"
-                    class="transition hover:-translate-y-0.5 hover:border-yellow-400"
+                    class="badge-glow"
+                    >{{ t }}</Badge
                   >
-                    {{ t }}
-                  </Badge>
                 </div>
               </div>
-
               <ul class="mt-5 space-y-2 text-sm text-white/85">
                 <li v-for="b in p.bullets" :key="b" class="flex gap-2">
                   <span
-                    class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-yellow-400/90"
+                    class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-yellow-400 shadow-[0_0_6px_rgba(250,204,21,0.6)]"
                   ></span>
                   <span class="leading-relaxed">{{ b }}</span>
                 </li>
               </ul>
             </div>
-
             <div class="h-px w-full mt-2 bg-white/10"></div>
-
             <div class="px-6 py-4">
               <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 <button
                   v-for="a in getProjectActionsFixed(p)"
                   :key="a.key"
                   :disabled="!a.href"
-                  class="flex w-full items-center justify-center gap-2 rounded-2xl border px-5 py-2.5 text-sm font-semibold transition duration-200"
+                  class="flex w-full items-center justify-center gap-2 rounded-2xl border px-5 py-2.5 text-sm font-semibold transition-colors duration-200"
                   :class="
                     a.href
-                      ? 'border-gray-700 bg-gray-900 text-white hover:-translate-y-0.5 hover:border-yellow-400'
+                      ? 'border-gray-700 bg-gray-900 text-white social-btn'
                       : 'border-gray-800 bg-gray-900/40 text-white/35 cursor-not-allowed'
                   "
                   @click="a.href && openLink(a.href)"
@@ -482,7 +461,7 @@ onMounted(() => {
           <Card
             v-for="c in profile.competitions"
             :key="c.name"
-            class="transition hover:-translate-y-0.5 hover:border-yellow-400"
+            class="card-glow"
           >
             <div class="text-base font-semibold">{{ c.name }}</div>
             <div class="text-sm text-white/70">{{ c.role }}</div>
@@ -507,54 +486,51 @@ onMounted(() => {
               :href="github.href"
               target="_blank"
               rel="noopener noreferrer"
-              class="group rounded-xl border border-gray-700 bg-gray-900 p-3 transition hover:-translate-y-0.5 hover:border-yellow-400"
+              class="icon-btn group rounded-xl border border-gray-700 bg-gray-900 p-3"
               aria-label="GitHub"
             >
               <Github
-                class="h-5 w-5 text-white/70 transition group-hover:text-yellow-400"
+                class="h-5 w-5 text-white/70 transition-colors group-hover:text-yellow-400"
               />
             </a>
-
             <a
               v-if="instagram?.href"
               :href="instagram.href"
               target="_blank"
               rel="noopener noreferrer"
-              class="group rounded-xl border border-gray-700 bg-gray-900 p-3 transition hover:-translate-y-0.5 hover:border-yellow-400"
+              class="icon-btn group rounded-xl border border-gray-700 bg-gray-900 p-3"
               aria-label="Instagram"
             >
               <Instagram
-                class="h-5 w-5 text-white/70 transition group-hover:text-yellow-400"
+                class="h-5 w-5 text-white/70 transition-colors group-hover:text-yellow-400"
               />
             </a>
-
             <a
               v-if="linkedin?.href"
               :href="linkedin.href"
               target="_blank"
               rel="noopener noreferrer"
-              class="group rounded-xl border border-gray-700 bg-gray-900 p-3 transition hover:-translate-y-0.5 hover:border-yellow-400"
+              class="icon-btn group rounded-xl border border-gray-700 bg-gray-900 p-3"
               aria-label="LinkedIn"
             >
               <Linkedin
-                class="h-5 w-5 text-white/70 transition group-hover:text-yellow-400"
+                class="h-5 w-5 text-white/70 transition-colors group-hover:text-yellow-400"
               />
             </a>
-
             <a
               v-if="whatsapp?.href"
               :href="whatsapp.href"
               target="_blank"
               rel="noopener noreferrer"
-              class="group rounded-xl border border-gray-700 bg-gray-900 p-3 transition hover:-translate-y-0.5 hover:border-yellow-400"
-              aria-label="whatsapp"
+              class="icon-btn group rounded-xl border border-gray-700 bg-gray-900 p-3"
+              aria-label="WhatsApp"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-whatsapp h-5 w-5 text-white/70 transition group-hover:text-yellow-400"
+                class="bi bi-whatsapp h-5 w-5 text-white/70 transition-colors group-hover:text-yellow-400"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -562,14 +538,13 @@ onMounted(() => {
                 />
               </svg>
             </a>
-
             <a
               :href="`mailto:${profile.email}`"
-              class="group rounded-xl border border-gray-700 bg-gray-900 p-3 transition hover:-translate-y-0.5 hover:border-yellow-400"
+              class="icon-btn group rounded-xl border border-gray-700 bg-gray-900 p-3"
               aria-label="Email"
             >
               <Mail
-                class="h-5 w-5 text-white/70 transition group-hover:text-yellow-400"
+                class="h-5 w-5 text-white/70 transition-colors group-hover:text-yellow-400"
               />
             </a>
           </div>
@@ -578,3 +553,109 @@ onMounted(() => {
     </main>
   </div>
 </template>
+
+<style>
+.bg-blob {
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.07;
+  will-change: transform;
+}
+
+.card-glow {
+  position: relative;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.card-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.card-glow:hover {
+  transform: translateY(-2px);
+  border-color: rgb(250 204 21 / 1);
+}
+.card-glow:hover::after {
+  opacity: 1;
+}
+
+.badge-glow {
+  position: relative;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+.badge-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 6px rgba(250, 204, 21, 0.5);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.badge-glow:hover {
+  transform: translateY(-2px);
+  border-color: rgb(250 204 21 / 1);
+}
+.badge-glow:hover::after {
+  opacity: 1;
+}
+
+.social-btn {
+  position: relative;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+.social-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.5);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.social-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgb(250 204 21 / 1);
+}
+.social-btn:hover::after {
+  opacity: 1;
+}
+
+.icon-btn {
+  position: relative;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+.icon-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.5);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.icon-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgb(250 204 21 / 1);
+}
+.icon-btn:hover::after {
+  opacity: 1;
+}
+</style>
