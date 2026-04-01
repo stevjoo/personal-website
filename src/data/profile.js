@@ -77,7 +77,7 @@ export const profile = {
     {
       role: "Head of Technical / Blue Team",
       org: "UMN Cybersecurity Communities",
-      period: "Mar 2025 - Present",
+      period: "Mar 2025 - Apr 2026",
       bullets: [
         "Designed and implemented the network topology for the community’s cybersecurity lab, simulating real-world attack and defense environments.",
         "Configured secure wireless connections and ensured stable network segmentation for attacker and defender nodes.",
@@ -153,15 +153,15 @@ export const profile = {
 
   projects: [
     {
-      name: "EDR-lite (Endpoint Detection Tool)",
+      name: "LOLBin Watcher",
       stack: "Rust, Windows API, sysinfo",
-      linkLabel: "github.com/stevjoo/edr-lite",
-      link: "https://github.com/stevjoo/edr-lite",
+      linkLabel: "github.com/stevjoo/lolbin-watcher",
+      link: "https://github.com/stevjoo/lolbin-watcher",
       bullets: [
-        "Developed a lightweight Windows endpoint detection tool (EDR-lite) using Rust.",
-        "Implemented process monitoring and behavioral detection for suspicious execution patterns.",
-        "Detected common Living-off-the-Land binaries (LOLBins) and executions from user-writable paths.",
-        "Generated structured JSON logs for SOC-style analysis and incident triage.",
+        "Built a lightweight Windows process monitoring tool in Rust for real-time threat detection.",
+        "Detected LOLBin abuse and suspicious executions from user-writable paths (Temp, AppData, Downloads).",
+        "Extracted PE VersionInfo metadata to identify renamed binaries that evade name-based detection.",
+        "Generated structured JSONL logs with severity classification for SOC-style triage.",
       ],
     },
 

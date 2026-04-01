@@ -40,7 +40,6 @@ function openMenu() {
 }
 
 function closeMenu() {
-  // Mirror: drawer slides up first, then backdrop fades
   drawerVisible.value = false;
   window.setTimeout(() => {
     backdropVisible.value = false;
@@ -52,7 +51,6 @@ function toggleMenu() {
   menuOpen.value ? closeMenu() : openMenu();
 }
 
-// ── Scroll tracking — ketat, hanya update kalau activeId benar-benar berubah ──
 let rafId = null;
 let lastActive = items[0].id;
 
@@ -73,7 +71,6 @@ function updateActive() {
     window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
   if (bottomReached) current = items[items.length - 1].id;
 
-  // Hanya trigger reaktivitas kalau nilai benar-benar berubah
   if (current !== lastActive) {
     lastActive = current;
     activeId.value = current;

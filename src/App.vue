@@ -21,7 +21,6 @@ import {
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Paksa GSAP pakai GPU-only properties, matikan recalc yang tidak perlu
 ScrollTrigger.config({ ignoreMobileResize: true });
 
 function normalizeUrl(url) {
@@ -113,8 +112,6 @@ onMounted(() => {
         scrollTrigger: {
           trigger: element,
           start: "top 88%",
-          // "play none none none" + once:true = animasi jalan sekali, tidak reverse
-          // Ini jauh lebih ringan dari toggleActions reverse
           once: true,
         },
       },
@@ -643,8 +640,8 @@ onMounted(() => {
 }
 .icon-btn::after {
   content: "";
-  position: absolute;
   inset: 0;
+  position: absolute;
   border-radius: inherit;
   box-shadow: 0 0 8px rgba(250, 204, 21, 0.5);
   opacity: 0;
