@@ -248,7 +248,7 @@ onMounted(() => {
               class="relative aspect-square w-full border-3 border-gray-700 overflow-hidden rounded-3xl transition duration-500 hover:scale-102 hover:border-yellow-400"
             >
               <img
-                src="/me.jpg"
+                src="/Steven Jonathan - Stevjo.jpg"
                 alt="Profile photo"
                 class="h-full w-full object-cover object-center"
                 loading="lazy"
