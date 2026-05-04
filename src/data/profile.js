@@ -214,8 +214,8 @@ export const profile = {
     {
       name: "Infinite 2024 Website",
       stack: "Laravel, Inertia, React, Bun",
-      linkLabel: "github.com/stevjoo/infinite24-web",
-      repo: "https://github.com/stevjoo/infinite24-web",
+      linkLabel: "github.com/JSenpa1/infinite24-web",
+      repo: "https://github.com/JSenpa1/infinite24-web",
       bullets: [
         "Developed a modern responsive event website using Laravel + Inertia + React.",
         "Applied component-based architecture for maintainability and scalability.",
