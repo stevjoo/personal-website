@@ -13,14 +13,14 @@ export const profile = {
     { label: "WhatsApp", href: "https://wa.me/+628561396967" },
   ],
   summary:
-    "Third-year Informatics student at Universitas Multimedia Nusantara with a strong focus on system engineering, networking, and cybersecurity. Actively involved in building simulated infrastructures, managing Linux based systems and configuring networks. In parallel, I also contribute to fullstack web development and software development projects. Passionate about designing secure and scalable systems, and always eager to learn and grow through real-world problem solving and collaboration.",
+    "Fourth-year Informatics student at Universitas Multimedia Nusantara with a strong focus on cybersecurity, networking and system engineering. Actively involved in building simulated infrastructures, managing Linux based systems and configuring networks. In parallel, I also contribute to fullstack web development and software development projects. Passionate about designing secure and scalable systems, and always eager to learn and grow through real-world problem solving and collaboration.",
 
   education: [
     {
       school: "Universitas Multimedia Nusantara",
       period: "Aug 2023 - Jun 2027",
       degree: "Bachelor of Informatics Engineering",
-      gpa: "3.78/4.00",
+      gpa: "3.82/4.00",
     },
   ],
 
@@ -36,7 +36,12 @@ export const profile = {
     },
     {
       title: "Tools & Platform",
-      items: ["Linux (Fedora, Ubuntu, RHEL)", "Git", "TailwindCSS", "GSAP"],
+      items: [
+        "Linux (Fedora, Ubuntu, RHEL, openSUSE)",
+        "Git",
+        "TailwindCSS",
+        "GSAP",
+      ],
     },
     {
       title: "Networking",
@@ -153,10 +158,23 @@ export const profile = {
 
   projects: [
     {
+      name: "MAC Overhead Benchmark",
+      stack: "C, Python, Bash, LSM, AppArmor, SELinux",
+      linkLabel: "github.com/stevjoo/mac-overhead-benchmark",
+      repo: "https://github.com/stevjoo/mac-overhead-benchmark",
+      bullets: [
+        "Developed a C microbenchmark framework to measure Linux MAC latency overhead at the syscall level with nanosecond precision.",
+        "Engineered a reboot-aware automation pipeline via GRUB manipulation to isolate performance variables across identical environments.",
+        "Implemented high-precision telemetry using CLOCK_MONOTONIC_RAW and IQR outlier filtering to eliminate hypervisor virtualization noise.",
+        "Built a Python pipeline for multi-phase metrics ingestion, per-iteration outcome validation, and statistical latency analysis.",
+      ],
+    },
+
+    {
       name: "LOLBin Watcher",
       stack: "Rust, Windows API, sysinfo",
       linkLabel: "github.com/stevjoo/lolbin-watcher",
-      link: "https://github.com/stevjoo/lolbin-watcher",
+      repo: "https://github.com/stevjoo/lolbin-watcher",
       bullets: [
         "Built a lightweight Windows process monitoring tool in Rust for real-time threat detection.",
         "Detected LOLBin abuse and suspicious executions from user-writable paths (Temp, AppData, Downloads).",
@@ -170,6 +188,7 @@ export const profile = {
       stack: "Laravel, Inertia, Vue",
       linkLabel: "byteumn.com",
       link: "https://byteumn.com",
+      repo: "https://github.com/stevjoo/byte2025",
       bullets: [
         "Developed and maintained the official website using Laravel with Inertia.js and Vue.",
         "Implemented role-based authentication and secure access for committee and administrative users.",
@@ -230,11 +249,15 @@ export const profile = {
       role: "Participant",
     },
     {
-      name: "Google Capture The Flag (CTF) 2024",
+      name: "GoogleCTF 2024 - Capture The Flag (CTF)",
       role: "Participant",
     },
     {
       name: "Gemastik 15 - Capture The Flag (CTF)",
+      role: "Participant",
+    },
+    {
+      name: "LYKNCTF 2026 - Capture The Flag (CTF)",
       role: "Participant",
     },
   ],
@@ -243,7 +266,10 @@ export const profile = {
     {
       title: "Systems & Infrastructure",
       groups: [
-        { label: "Linux", items: ["Fedora", "Ubuntu", "RHEL", "Bash"] },
+        {
+          label: "Linux",
+          items: ["Fedora", "Ubuntu", "RHEL", "openSUSE", "Bash"],
+        },
         { label: "Virtualization", items: ["VMWare", "VirtualBox", "QEMU"] },
         { label: "Services", items: ["Nginx", "Apache", "SSH"] },
       ],
