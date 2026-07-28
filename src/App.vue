@@ -249,9 +249,12 @@ onMounted(() => {
             >
               <img
                 src="/Steven Jonathan - Stevjo.jpg"
-                alt="Profile photo"
+                alt="Steven Jonathan (Stevjo) - Network Engineer and Cybersecurity Analyst from Jakarta"
                 class="h-full w-full object-cover object-center"
-                loading="lazy"
+                loading="eager"
+                fetchpriority="high"
+                width="600"
+                height="600"
               />
             </div>
           </div>
