@@ -1,38 +1,80 @@
-# personal-web
+# Steven Jonathan - Personal Website
 
-This template should help get you started developing with Vue 3 in Vite.
+A personal portfolio website for Steven Jonathan - Network Engineer, Cybersecurity Analyst, and Software Developer. Built with Vue 3, Vite, and TailwindCSS.
 
-## Recommended IDE Setup
+🌐 **Live site:**
+- [stevjo.my.id](https://stevjo.my.id)
+- [stevenjonathan.my.id](https://stevenjonathan.my.id)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Tech Stack
 
-## Recommended Browser Setup
+- **Framework:** Vue 3
+- **Build Tool:** Vite
+- **Styling:** TailwindCSS v4
+- **Animations:** GSAP
+- **Icons:** Lucide Vue Next
+- **Package Manager:** Bun
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Features
 
-## Customize configuration
+- About / summary section
+- Work experience & organizational experience
+- Projects showcase
+- Skills & technical competencies
+- Education & competition history
+- Links to LinkedIn, GitHub, CV, Instagram, and WhatsApp
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Getting Started
 
-## Project Setup
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) `^20.19.0` or `>=22.12.0`
+- [Bun](https://bun.sh/) `>=1.0.0` *(recommended package manager)*
+
+### Install dependencies
 
 ```sh
-npm install
+bun install
 ```
 
-### Compile and Hot-Reload for Development
+### Start development server
 
 ```sh
-npm run dev
+bun run dev
 ```
 
-### Compile and Minify for Production
+### Build for production
 
 ```sh
-npm run build
+bun run build
 ```
+
+### Preview production build
+
+```sh
+bun run preview
+```
+
+## Project Structure
+
+```
+personal-website/
+├── public/          # Static assets (CV, favicon, etc.)
+├── src/
+│   ├── data/
+│   │   └── profile.js   # All profile content (edit this to update the site)
+│   ├── components/  # Vue components
+│   └── App.vue      # Root component
+├── index.html
+├── vite.config.js
+└── tailwind.config.js
+```
+
+## Customization
+
+All personal content is centralized in [`src/data/profile.js`](./src/data/profile.js). Edit that file to update:
+
+- Name, headline, location, email, and social links
+- Summary / about text
+- Education, work, and experience entries
+- Projects, skills, and competition history
