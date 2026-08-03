@@ -9,6 +9,7 @@ export const profile = {
       href: "https://www.linkedin.com/in/stevenjonathan-id",
     },
     { label: "GitHub", href: "https://github.com/stevjoo" },
+    { label: "CV", href: "/CV.pdf" },
     { label: "Instagram", href: "https://instagram.com/stev.jo__" },
     { label: "WhatsApp", href: "https://wa.me/+628561396967" },
   ],

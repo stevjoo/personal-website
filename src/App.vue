@@ -214,7 +214,7 @@ onMounted(() => {
           </div>
 
           <div
-            class="hero-stagger-actions mt-6 flex flex-wrap items-center gap-3"
+            class="hero-stagger-actions mt-4 flex flex-wrap items-center gap-3"
           >
             <a
               v-if="cv?.href"
