@@ -15,8 +15,6 @@ import {
   FileText,
   Globe,
   Instagram,
-  Link as LinkIcon,
-  ExternalLink,
 } from "lucide-vue-next";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -266,7 +264,7 @@ onMounted(() => {
               class="relative aspect-square w-full border-3 border-gray-700 overflow-hidden rounded-3xl transition duration-500 hover:scale-102 hover:border-yellow-400"
             >
               <img
-                src="/Steven Jonathan - Stevjo.jpg"
+                src="/Steven Jonathan - Stevjo.webp"
                 alt="Steven Jonathan (Stevjo) - Network Engineer and Cybersecurity Analyst from Jakarta"
                 class="h-full w-full object-cover object-center"
                 loading="eager"
@@ -573,6 +571,20 @@ onMounted(() => {
 </template>
 
 <style>
+/* Prevent FOUC before GSAP hydration */
+.js .hero-stagger-text,
+.js .hero-stagger-actions,
+.js .hero-stagger-img,
+.js #about,
+.js #education,
+.js #skills,
+.js #work,
+.js #experience,
+.js #projects,
+.js #competitions {
+  opacity: 0;
+}
+
 .bg-blob {
   border-radius: 9999px;
   filter: blur(80px);

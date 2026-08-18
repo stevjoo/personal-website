@@ -1,15 +1,15 @@
 # Steven Jonathan - Personal Website
 
-A personal portfolio website for Steven Jonathan - Network Engineer, Cybersecurity Analyst, and Software Developer. Built with Vue 3, Vite, and TailwindCSS.
+A personal portfolio website for Steven Jonathan - Network Engineer, Cybersecurity Analyst, and Software Developer. Built with Astro, Vue 3, and TailwindCSS v4.
 
-🌐 **Live site:**
+**Live site:**
 - [stevjo.my.id](https://stevjo.my.id)
 - [stevenjonathan.my.id](https://stevenjonathan.my.id)
 
 ## Tech Stack
 
-- **Framework:** Vue 3
-- **Build Tool:** Vite
+- **Framework:** Astro (SSG/SSR)
+- **UI Components:** Vue 3 (Islands Architecture)
 - **Styling:** TailwindCSS v4
 - **Animations:** GSAP
 - **Icons:** Lucide Vue Next
@@ -23,6 +23,8 @@ A personal portfolio website for Steven Jonathan - Network Engineer, Cybersecuri
 - Skills & technical competencies
 - Education & competition history
 - Links to LinkedIn, GitHub, CV, Instagram, and WhatsApp
+- Zero-JS by default (Astro Islands for interactive components)
+- Perfect SEO and lightning-fast loading
 
 ## Getting Started
 
@@ -57,17 +59,18 @@ bun run preview
 
 ## Project Structure
 
-```
+```text
 personal-website/
 ├── public/          # Static assets (CV, favicon, etc.)
 ├── src/
+│   ├── assets/      # Global CSS files
 │   ├── data/
 │   │   └── profile.js   # All profile content (edit this to update the site)
 │   ├── components/  # Vue components
-│   └── App.vue      # Root component
-├── index.html
-├── vite.config.js
-└── tailwind.config.js
+│   ├── layouts/     # Astro layouts (SEO meta tags, HTML shell)
+│   ├── pages/       # Astro pages (Routing)
+│   └── App.vue      # Root Vue component (injected into Astro)
+└── astro.config.mjs # Astro configuration
 ```
 
 ## Customization
