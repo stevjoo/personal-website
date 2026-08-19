@@ -9,6 +9,7 @@
         "@astrojs/vue": "^7.0.2",
         "astro": "^7.2.2",
         "gsap": "^3.14.2",
+        "lucide": "^1.32.0",
         "lucide-vue-next": "^0.562.0",
         "vue": "^3.5.25",
       },
@@ -631,6 +632,8 @@
     "loglevel": ["loglevel@1.9.2", "", {}, "sha512-HgMmCqIJSAKqo68l0rS2AanEWfkxaZ5wNiEFb5ggm08lDs9Xl2KxBlX3PTcaD2chBM1gXAYf491/M2Rv8Jwayg=="],
 
     "lru-cache": ["lru-cache@11.5.2", "", {}, "sha512-4pfM1Ff0x50o0tQwb5ucw/RzNyD0/YJME6IVcStalZuMWxdt3sR3huStTtxz4PUmvZfRguvDejasvQ2kifR11g=="],
+
+    "lucide": ["lucide@1.32.0", "", {}, "sha512-CZ/Ff2eVQmK18vtdS8RNZ4ct5Jc1VR02l2F8ojliv4QeO4WxvBaGTqa+254WgfR+81pxtKTV0dqgaEK5fghKyA=="],
 
     "lucide-vue-next": ["lucide-vue-next@0.562.0", "", { "peerDependencies": { "vue": ">=3.0.1" } }, "sha512-LN0BLGKMFulv0lnfK29r14DcngRUhIqdcaL0zXTt2o0oS9odlrjCGaU3/X9hIihOjjN8l8e+Y9G/famcNYaI7Q=="],
 
