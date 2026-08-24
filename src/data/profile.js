@@ -66,6 +66,17 @@ export const profile = {
 
   work: [
     {
+      role: "Co-Founder",
+      company: "BukaWebsite",
+      period: "July 2026 - Present",
+      bullets: [
+        "Founded and manage a professional web development agency focused on delivering modern, reliable, and high-performing websites to help businesses enhance their digital presence and drive sales.",
+        "Lead end-to-end website development lifecycles, from initial concept and architecture design to deployment and optimization.",
+        "Drive client acquisition and relationship management, acting as the primary liaison to translate business requirements into actionable technical solutions.",
+        "Author and maintain comprehensive technical documentation, including project proposals, technical specifications, and user guides.",
+      ],
+    },
+    {
       role: "Network Engineer Intern",
       company: "PT. RJGF International Indonesia",
       period: "Feb 2026 - Present",
