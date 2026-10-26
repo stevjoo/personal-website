@@ -8,14 +8,14 @@ import Badge from "./components/Badge.vue";
 import Card from "./components/Card.vue";
 import { profile } from "./data/profile.js";
 import {
-  MapPin,
-  Mail,
-  Github,
-  Linkedin,
-  FileText,
-  Globe,
-  Instagram,
-} from "lucide-vue-next";
+  IconMapPin as MapPin,
+  IconMail as Mail,
+  IconBrandGithub as Github,
+  IconBrandLinkedin as Linkedin,
+  IconFileText as FileText,
+  IconGlobe as Globe,
+  IconBrandInstagram as Instagram,
+} from "@tabler/icons-vue";
 
 gsap.registerPlugin(ScrollTrigger);
 
