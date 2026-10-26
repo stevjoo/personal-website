@@ -13,7 +13,7 @@ import {
   IconBrandGithub as Github,
   IconBrandLinkedin as Linkedin,
   IconFileText as FileText,
-  IconGlobe as Globe,
+  IconWorld as World,
   IconBrandInstagram as Instagram,
 } from "@tabler/icons-vue";
 
@@ -47,7 +47,7 @@ function getProjectActionsFixed(p) {
   const liveUrl = isWebsiteUrl(link) ? link : "";
   return [
     { key: "github", label: "GitHub", href: repoUrl || null, Icon: Github },
-    { key: "website", label: "Website", href: liveUrl || null, Icon: Globe },
+    { key: "website", label: "Website", href: liveUrl || null, Icon: World },
   ];
 }
 
@@ -454,14 +454,14 @@ onMounted(() => {
                   :class="
                     a.href
                       ? 'border-gray-700 bg-gray-900 text-white social-btn'
-                      : 'border-gray-800 bg-gray-900/40 text-white/35 cursor-not-allowed'
+                      : 'border-gray-800 bg-gray-900/40 text-gray-500 cursor-not-allowed'
                   "
                   @click="a.href && openLink(a.href)"
                 >
                   <component
                     :is="a.Icon"
                     class="h-4 w-4"
-                    :class="a.href ? 'text-yellow-400' : 'text-white/30'"
+                    :class="a.href ? 'text-yellow-400' : 'text-gray-500'"
                   />
                   {{ a.label }}
                 </button>
