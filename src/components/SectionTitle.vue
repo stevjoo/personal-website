@@ -1,9 +1,15 @@
+<script setup>
+defineProps({
+  index: { type: String, default: "" },
+  title: { type: String, required: true },
+});
+</script>
+
 <template>
-  <div class="mb-6">
-    <h2 class="text-xl font-semibold text-white">
-      <slot />
-      <span class="text-yellow-400">.</span>
+  <div>
+    <p v-if="index" class="section-num">{{ index }}</p>
+    <h2 class="mt-6 font-display display-2">
+      {{ title }}<span class="accent">.</span>
     </h2>
-    <div class="mt-2 h-px w-full bg-gray-700"></div>
   </div>
 </template>
