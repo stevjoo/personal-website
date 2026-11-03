@@ -31,7 +31,7 @@ function getIcon(name) {
     <div class="max-w-[1320px] mx-auto px-6 md:px-10">
       <div class="flex items-end justify-between flex-wrap gap-6">
         <div>
-          <p class="section-num">Index · 04 — Projects</p>
+          <p class="section-num">Index · 04 | Projects</p>
           <h2 class="mt-6 font-display display-2">
             Selected work<span class="accent">.</span>
           </h2>

@@ -33,7 +33,7 @@ export const profile = {
     {
       label: "CV",
       href: "/CV.pdf",
-      display: "Download CV",
+      display: "CV",
     },
   ],
 
@@ -55,8 +55,8 @@ export const profile = {
     },
     {
       label: "Open to",
-      title: "Internships & collabs",
-      sub: "Available · Feb 2026 →",
+      title: "Project and Collab",
+      sub: "Always Available",
       hasPulse: true,
     },
   ],
@@ -71,8 +71,8 @@ export const profile = {
   ],
 
   about: {
-    title: "A third-year Informatics student building secure systems.",
-    lead: "Third-year Informatics student at Universitas Multimedia Nusantara with a strong focus on system engineering, networking, and cybersecurity. Actively involved in building simulated infrastructures, managing Linux based systems and configuring networks.",
+    title: "A Fourth-year Informatics student building secure systems.",
+    lead: "Fourth-year Informatics student at Universitas Multimedia Nusantara with a strong focus on system engineering, networking, and cybersecurity. Actively involved in building simulated infrastructures, managing Linux based systems and configuring networks.",
     body: "In parallel, I also contribute to fullstack web development and software development projects. Passionate about designing secure and scalable systems, and always eager to learn and grow through real-world problem solving and collaboration.",
     metrics: [
       { value: "3+", label: "Years studying CS" },
@@ -86,14 +86,13 @@ export const profile = {
       school: "Universitas Multimedia Nusantara",
       period: "Aug 2023 — Jun 2027",
       degree: "Bachelor of Informatics Engineering",
-      gpa: "3.78 / 4.00",
+      gpa: "3.82 / 4.00",
     },
   ],
 
   spokenLanguages: [
     { name: "Bahasa Indonesia", level: "Native" },
     { name: "English", level: "Professional" },
-    { name: "Mandarin", level: "Elementary" },
   ],
 
   competitions: [

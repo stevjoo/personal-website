@@ -9,12 +9,12 @@ import { profile } from "../data/profile.js";
         <div class="col-span-12 md:col-span-4">
           <p class="section-num">Index · 02 | About</p>
           <h2 class="mt-6 font-display display-3">
-            A third-year <span class="accent">Informatics</span> student building secure systems.
+            A fourth-year <span class="accent">Informatics</span> student building secure systems.
           </h2>
         </div>
         <div class="col-span-12 md:col-span-7 md:col-start-6">
           <p class="text-xl md:text-2xl leading-relaxed ink-muted reveal">
-            Third-year Informatics student at
+            Fourth-year Informatics student at
             <span class="text-white">Universitas Multimedia Nusantara</span>
             with a strong focus on system engineering, networking, and cybersecurity. Actively involved in building simulated infrastructures, managing Linux based systems and configuring networks.
           </p>

@@ -171,8 +171,10 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top center;
   display: block;
   filter: grayscale(8%) contrast(1.02);
+  vertical-align: top;
 }
 
 .portrait-tape {
@@ -422,10 +424,10 @@ a {
   width: 12px;
   height: 12px;
   border-radius: 999px;
-  background: var(--accent);
+  background: #1e3a5f;
   pointer-events: none;
   z-index: 90;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
   opacity: 0;
   transform: translate(-50%, -50%);
 }

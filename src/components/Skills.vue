@@ -1,18 +1,18 @@
 <script setup>
 import { ref } from "vue";
-import { ServerCog, ShieldCheck, Code2, Flag } from "lucide-vue-next";
+import { IconServerCog, IconShieldCheck, IconCode, IconFlag } from "@tabler/icons-vue";
 import { profile } from "../data/profile.js";
 
 const activeTab = ref(profile.technicalSkills[0].id);
 
 const tabIcons = {
-  ServerCog,
-  ShieldCheck,
-  Code2,
+  ServerCog: IconServerCog,
+  ShieldCheck: IconShieldCheck,
+  Code2: IconCode,
 };
 
 function getTabIcon(name) {
-  return tabIcons[name] || ServerCog;
+  return tabIcons[name] || IconServerCog;
 }
 </script>
 
@@ -21,13 +21,13 @@ function getTabIcon(name) {
     <div class="max-w-[1320px] mx-auto px-6 md:px-10">
       <div class="flex items-end justify-between flex-wrap gap-6">
         <div>
-          <p class="section-num">Index · 05 — Skills</p>
+          <p class="section-num">Index · 05 | Skills</p>
           <h2 class="mt-6 font-display display-2">
             Stack &amp; toolkit<span class="accent">.</span>
           </h2>
         </div>
         <p class="ink-muted max-w-sm text-sm">
-          From kernel-adjacent to UI layer — what I use day-to-day.
+          From kernel-adjacent to UI layer to what I use day-to-day.
         </p>
       </div>
 
@@ -110,6 +110,18 @@ function getTabIcon(name) {
       <div class="hairline my-12"></div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <!-- Education -->
+        <div class="lg:col-span-1">
+          <p class="font-mono-ish ink-dim mb-3">Education</p>
+          <div v-for="edu in profile.education" :key="edu.school">
+            <h4 class="font-display text-xl">{{ edu.school }}</h4>
+            <p class="ink-muted mt-1">{{ edu.degree }}</p>
+            <p class="ink-muted text-sm mt-1">
+              {{ edu.period }} · <span class="accent">GPA {{ edu.gpa }}</span>
+            </p>
+          </div>
+        </div>
+
         <!-- Spoken Languages -->
         <div class="lg:col-span-1">
           <p class="font-mono-ish ink-dim mb-3">Spoken Languages</p>
@@ -125,18 +137,6 @@ function getTabIcon(name) {
           </ul>
         </div>
 
-        <!-- Education -->
-        <div class="lg:col-span-1">
-          <p class="font-mono-ish ink-dim mb-3">Education</p>
-          <div v-for="edu in profile.education" :key="edu.school">
-            <h4 class="font-display text-xl">{{ edu.school }}</h4>
-            <p class="ink-muted mt-1">{{ edu.degree }}</p>
-            <p class="ink-muted text-sm mt-1">
-              {{ edu.period }} · <span class="accent">GPA {{ edu.gpa }}</span>
-            </p>
-          </div>
-        </div>
-
         <!-- Competitions -->
         <div class="lg:col-span-1">
           <p class="font-mono-ish ink-dim mb-3">Competitions</p>
@@ -146,7 +146,7 @@ function getTabIcon(name) {
               :key="comp.name"
               class="flex items-start gap-3"
             >
-              <Flag class="w-4 h-4 mt-1 accent shrink-0" />
+              <IconFlag class="w-4 h-4 mt-1 accent shrink-0" />
               <div>
                 <div>{{ comp.name }}</div>
                 <div class="ink-muted text-xs">{{ comp.role }}</div>

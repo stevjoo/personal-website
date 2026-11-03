@@ -1,5 +1,5 @@
 <script setup>
-import { ChevronRight } from "lucide-vue-next";
+import { IconChevronRight } from "@tabler/icons-vue";
 import { profile } from "../data/profile.js";
 
 const currentInternship = profile.work.find((w) => w.role.includes("Intern")) || profile.work[0];
@@ -11,7 +11,7 @@ const otherWorkAndOrgs = profile.experience;
     <div class="max-w-[1320px] mx-auto px-6 md:px-10">
       <div class="flex items-end justify-between flex-wrap gap-6">
         <div>
-          <p class="section-num">Index · 03 — Experience</p>
+          <p class="section-num">Index · 03 | Experience</p>
           <h2 class="mt-6 font-display display-2">
             Where I've been<span class="accent">.</span>
           </h2>
@@ -43,7 +43,7 @@ const otherWorkAndOrgs = profile.experience;
               class="flex gap-3"
               :class="{ 'md:col-span-2': bIdx === currentInternship.bullets.length - 1 && currentInternship.bullets.length % 2 !== 0 }"
             >
-              <ChevronRight class="w-4 h-4 mt-1 accent shrink-0" />
+              <IconChevronRight class="w-4 h-4 mt-1 accent shrink-0" />
               <span>{{ bullet }}</span>
             </li>
           </ul>
@@ -58,8 +58,7 @@ const otherWorkAndOrgs = profile.experience;
           :key="idx"
           class="rail-row py-5"
           :class="{
-            'is-current': item.isCurrent,
-            'lg:col-span-2': item.fullWidth
+            'is-current': item.isCurrent
           }"
         >
           <div class="flex flex-wrap items-baseline justify-between gap-2">
@@ -69,7 +68,6 @@ const otherWorkAndOrgs = profile.experience;
           <p class="ink-muted text-sm mt-1">{{ item.org }}</p>
           <ul
             class="mt-4 space-y-2 text-[14.5px] ink-muted leading-relaxed"
-            :class="{ 'grid md:grid-cols-3 gap-x-6 space-y-0': item.fullWidth }"
           >
             <li v-for="(bullet, bIdx) in item.bullets" :key="bIdx">
               · {{ bullet }}
