@@ -424,10 +424,10 @@ a {
   width: 12px;
   height: 12px;
   border-radius: 999px;
-  background: #1e3a5f;
+  background: var(--accent);
   pointer-events: none;
   z-index: 90;
-  mix-blend-mode: normal;
+  mix-blend-mode: difference;
   opacity: 0;
   transform: translate(-50%, -50%);
 }
@@ -437,6 +437,7 @@ a {
     opacity: 1;
   }
 }
+
 
 /* Navigation Shell */
 .nav-shell {
